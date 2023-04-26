@@ -4,13 +4,14 @@ import be.tomcools.dropwizard.websocket.handling.WebsocketContainer;
 import be.tomcools.dropwizard.websocket.handling.WebsocketContainerInitializer;
 import be.tomcools.dropwizard.websocket.registration.EndpointRegistration;
 import io.dropwizard.core.setup.Environment;
-import jakarta.servlet.ServletContext;
-import jakarta.websocket.DeploymentException;
-import jakarta.websocket.server.ServerContainer;
-import jakarta.websocket.server.ServerEndpointConfig;
-import org.eclipse.jetty.websocket.jakarta.server.config.JakartaWebSocketServletContainerInitializer;
+import org.eclipse.jetty.websocket.jsr356.server.ServerContainer;
+import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
 
-public class WebsocketHandler implements JakartaWebSocketServletContainerInitializer.Configurator {
+import javax.servlet.ServletContext;
+import javax.websocket.DeploymentException;
+import javax.websocket.server.ServerEndpointConfig;
+
+public class WebsocketHandler implements WebSocketServerContainerInitializer.Configurator {
     private final EndpointRegistration endpointRegistration;
     private final WebsocketConfiguration configuration;
     private final Environment environment;
@@ -35,15 +36,13 @@ public class WebsocketHandler implements JakartaWebSocketServletContainerInitial
         this.endpointRegistration.add(serverEndpointConfig);
     }
 
-    public void initialize() {        
+    public void initialize() {
         containerInitializer.initialize(environment.getApplicationContext(), this);
     }
 
     @Override
-    public void accept(ServletContext servletContext, ServerContainer serverContainer) {
+    public void accept(ServletContext servletContext, ServerContainer serverContainer) throws DeploymentException {
         WebsocketContainer container = new WebsocketContainer(configuration, serverContainer);
         container.registerEndpoints(endpointRegistration.getRegisteredEndpoints());
     }
-
-
 }

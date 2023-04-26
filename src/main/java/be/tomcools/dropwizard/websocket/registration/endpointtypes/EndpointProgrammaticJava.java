@@ -1,7 +1,8 @@
 package be.tomcools.dropwizard.websocket.registration.endpointtypes;
 
 import be.tomcools.dropwizard.websocket.registration.Endpoint;
-import jakarta.websocket.server.ServerEndpointConfig;
+
+import javax.websocket.server.ServerEndpointConfig;
 
 public class EndpointProgrammaticJava extends Endpoint {
     private final ServerEndpointConfig config;

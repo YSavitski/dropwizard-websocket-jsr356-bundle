@@ -1,9 +1,9 @@
 package be.tomcools.dropwizard.websocket.integrationtest.annotatedjavaee;
 
-import jakarta.websocket.*;
-import jakarta.websocket.server.ServerEndpoint;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.websocket.*;
+import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
 

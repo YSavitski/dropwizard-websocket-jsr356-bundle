@@ -4,10 +4,10 @@ import be.tomcools.dropwizard.websocket.WebsocketConfiguration;
 import be.tomcools.dropwizard.websocket.registration.Endpoint;
 import be.tomcools.dropwizard.websocket.registration.Endpoints;
 import be.tomcools.dropwizard.websocket.registration.endpointtypes.EndpointProgrammaticJava;
-import jakarta.websocket.DeploymentException;
-import jakarta.websocket.server.ServerContainer;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.websocket.DeploymentException;
+import javax.websocket.server.ServerContainer;
 import java.util.Optional;
 
 @Slf4j
@@ -32,28 +32,28 @@ public class WebsocketContainer {
     }
 
     public void registerEndpoints(final Endpoints endpoints) {
-        final Endpoints succesfullyAdded = new Endpoints();
+        final Endpoints successfullyAdded = new Endpoints();
 
         for (Endpoint endpoint : endpoints) {
             try {
                 register(endpoint);
-                succesfullyAdded.add(endpoint);
+                successfullyAdded.add(endpoint);
             } catch (DeploymentException e) {
                 log.error("Could not add websocket endpoint {} to the deployment.", endpoint, e);
             }
         }
-        logRegisteredEndpoints(succesfullyAdded);
+        logRegisteredEndpoints(successfullyAdded);
     }
 
-    private void logRegisteredEndpoints(Endpoints succesfullyAdded) {
+    private void logRegisteredEndpoints(Endpoints successfullyAdded) {
         StringBuilder endpointsAdded = new StringBuilder("Registered websocket endpoints: ")
                 .append(System.lineSeparator())
                 .append(System.lineSeparator());
 
-        if (succesfullyAdded.isEmpty()) {
+        if (successfullyAdded.isEmpty()) {
             endpointsAdded.append("\tNONE \tNo endpoints were added to the server. Check logs for errors if you registered endpoints.").append(System.lineSeparator());
         } else {
-            for (Endpoint endpoint : succesfullyAdded) {
+            for (Endpoint endpoint : successfullyAdded) {
                 String endpointLogString = String.format("\tGET\t\t%s (%s)", endpoint.getPath(), endpoint.getEndpointClass().getName());
                 endpointsAdded.append(endpointLogString).append(System.lineSeparator());
             }

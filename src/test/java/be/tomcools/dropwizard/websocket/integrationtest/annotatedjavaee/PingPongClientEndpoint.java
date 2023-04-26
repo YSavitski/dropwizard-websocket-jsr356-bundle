@@ -1,8 +1,8 @@
 package be.tomcools.dropwizard.websocket.integrationtest.annotatedjavaee;
 
-import jakarta.websocket.*;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.websocket.*;
 import java.io.IOException;
 import java.net.URI;
 
@@ -33,7 +33,7 @@ public class PingPongClientEndpoint {
 
     @OnMessage
     public void processMessage(String message) {
-       log.info("Client: Received message: " + message);
+        log.info("Client: Received message: {}", message);
         if(handler != null) {
             handler.handleMessage(message);
         }

@@ -14,7 +14,7 @@ import static org.mockito.Mockito.mock;
 @ExtendWith(MockitoExtension.class)
 public class WebsocketHandlerFactoryTest {
     private final Environment environment = mock(Environment.class, RETURNS_DEEP_STUBS);
-    private WebsocketConfiguration configuration = mock(WebsocketConfiguration.class);
+    private final WebsocketConfiguration configuration = mock(WebsocketConfiguration.class);
 
 
     @InjectMocks

@@ -2,12 +2,13 @@ package be.tomcools.dropwizard.websocket.registration;
 
 import be.tomcools.dropwizard.websocket.registration.endpointtypes.EndpointProgrammaticJava;
 import be.tomcools.dropwizard.websocket.registration.endpointtypes.EndpointType;
-import jakarta.websocket.Endpoint;
-import jakarta.websocket.*;
-import jakarta.websocket.server.ServerEndpoint;
-import jakarta.websocket.server.ServerEndpointConfig;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;;
+import org.junit.jupiter.api.Test;
+
+import javax.websocket.Endpoint;
+import javax.websocket.*;
+import javax.websocket.server.ServerEndpoint;
+import javax.websocket.server.ServerEndpointConfig;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,7 +16,7 @@ import static org.hamcrest.core.Is.is;
 
 public class EndpointRegistrationTest {
 
-    private EndpointRegistration registration = new EndpointRegistration();
+    private final EndpointRegistration registration = new EndpointRegistration();
 
     @Test
     public void canAddAndReturnRegisteredEndpoints() {
@@ -69,7 +70,7 @@ public class EndpointRegistrationTest {
     }
 
     @ServerEndpoint("/chat")
-    class AnnotatedEndpoint {
+    static class AnnotatedEndpoint {
         @OnOpen
         public void open(Session session) {
         }
@@ -87,7 +88,7 @@ public class EndpointRegistrationTest {
         }
     }
 
-    class ProgrammaticEndpoint extends Endpoint {
+    static class ProgrammaticEndpoint extends Endpoint {
         @Override
         public void onOpen(Session session, EndpointConfig endpointConfig) {
             //To change body of implemented methods use File | Settings | File Templates.

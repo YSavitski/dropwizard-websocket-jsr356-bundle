@@ -1,11 +1,9 @@
 package be.tomcools.dropwizard.websocket.integrationtest.programmaticjavaee;
 
-
-import jakarta.websocket.Endpoint;
-import jakarta.websocket.EndpointConfig;
-import jakarta.websocket.MessageHandler;
-import jakarta.websocket.Session;
-
+import javax.websocket.Endpoint;
+import javax.websocket.EndpointConfig;
+import javax.websocket.MessageHandler;
+import javax.websocket.Session;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
